@@ -9,9 +9,9 @@ RUN npm ci
 COPY client/ ./
 RUN npm run build
 
-#serve with nginx
+#prep for nginx
 FROM nginx:alpine
 COPY --from=build /app/client/dist /usr/share/nginx/html
-#cOPY --from=build /app/client/build /usr/share/nginx/html
+
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
